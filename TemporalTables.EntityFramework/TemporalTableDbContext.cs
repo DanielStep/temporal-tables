@@ -10,6 +10,8 @@ namespace TemporalTables.EntityFramework
     public class TemporalTableDbContext : DbContext
     {
         public DbSet<TempTableExisting> TempTable { get; set; }
+        public DbSet<EntityFrameworkSpecific> EntityFrameworkSpecificTable { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -28,9 +30,21 @@ namespace TemporalTables.EntityFramework
                             options.UseHistoryTable("TempTableExistingHistory");
                         }
                     ));
+
+            modelBuilder
+                .Entity<EntityFrameworkSpecific>()
+                .ToTable("EntityFrameworkSpecific", b => b.IsTemporal(
+                        options => {}
+                    ));
         }
 
         public class TempTableExisting
+        {
+            public int ID { get; set; }
+            public string Name { get; set; }
+        }
+
+        public class EntityFrameworkSpecific
         {
             public int ID { get; set; }
             public string Name { get; set; }
