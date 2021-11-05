@@ -7,6 +7,14 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <None Remove="Scripts\211105141851_add_temporal_tables.sql" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="Scripts\211105141851_add_temporal_tables.sql" />
+    </ItemGroup>
+
+    <ItemGroup>
         <PackageReference Include="dbup-consolescripts" Version="1.5.0" />
         <PackageReference Include="dbup-core" Version="4.5.0" />
         <PackageReference Include="dbup-sqlserver" Version="4.5.0" />
